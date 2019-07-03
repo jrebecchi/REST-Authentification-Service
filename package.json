@@ -1,0 +1,51 @@
+{
+  "name": "rest-authentification",
+  "version": "0.0.1",
+  "description": "A REST back-end to handle login, registration, access control and password recovery with JsonWebToken.",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.2.7",
+    "mongoose": "^5.6.3",
+    "morgan": "^1.9.1",
+    "nodemailer": "^6.2.1"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.4",
+    "jest": "^24.8.0",
+    "supertest": "^3.3.0",
+    "supertest-session": "^3.3.0"
+  },
+  "scripts": {
+    "test": "jest --forceExit",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohannC/REST-Authentification"
+  },
+  "keywords": [
+    "NodeJS",
+    "user",
+    "space",
+    "userspace",
+    "REST",
+    "authentification",
+    "registration",
+    "login",
+    "backend",
+    "back-end",
+    "access",
+    "control",
+    "JsonWebToken",
+    "jwt",
+    "stateless"
+  ],
+  "author": "Johann Corcuff <johann.corcuff@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JohannC/NUSID/issues"
+  },
+  "homepage": "https://github.com/JohannC/NUSID#readme"
+}

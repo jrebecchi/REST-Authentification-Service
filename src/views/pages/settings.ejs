@@ -1,0 +1,54 @@
+<% include partials/head %>
+<% include partials/header %>
+
+<div class="container" ng-controller="settings" ng-init="originalUsername='<%= user.username %>'">
+	<div id="content">
+		<div class="row">
+    		<h1>Settings</h1>
+    		<hr/>
+    		    <h2 class="margin-bottom">Profile</h2>
+                <table class="table table-responsive">
+                    <tbody>
+                    <tr>
+                        <% include forms/update-username %> 
+                    </tr>
+                    <tr>
+                        <% include forms/update-email %> 
+                    </tr>
+                    <tr>
+                        <% include forms/update-first-name %> 
+                    </tr>
+                    <tr>
+                        <% include forms/update-last-name %> 
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">   
+                <h2 class="margin-bottom">Change password</h2>
+                    <% include forms/update-password %> 
+            </div>
+            <div class="row col-sm-8 col-md-6 col-lg-5 margin-top"> 
+                <div class="panel panel-danger panel-delete">
+                    <div class="panel-heading">
+                        <h4>Delete my account <small class="text-muted">This cannot be undone. Really.</small></h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-xs-4 col-sm-6">Are you sure?</div>
+                        <div class="col-xs-5 col-sm-5">
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-account-modal">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete my account
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+	</div>
+</div>
+
+<% include partials/footer %>
+<% include partials/end %>
+<% include dialogs/delete-account-confirm %>

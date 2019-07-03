@@ -1,0 +1,110 @@
+<form class="form-horizontal" id="register-form" class="register-form" method="post" data-remote="true" action="/register">
+	<input type="hidden" name="_csrf" value="<%=csrfToken%>">
+	<div class="form-group {{inputs.username.cssClass}}">
+		<label class="col-sm-2 control-label">Username</label>
+		<div class="col-sm-6" >
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+				<input class="form-control" type="text" name="username" ng-model="username" ng-init="username='<%= (typeof username !== 'undefined')? username : '' %>'" ng-change="validateData('username')" value="" placeholder="" />
+			</div>
+			<span class="glyphicon glyphicon-remove form-control-feedback ng-cloak" ng-show="inputs.username.hasError"></span>
+			<span class="glyphicon glyphicon-ok form-control-feedback ng-cloak" ng-show="inputs.username.isValid"></span>
+			
+			<p class="help-block ng-cloak" ng-show="inputs.username.hasError">{{inputs.username.errorMsg}}</p>
+			
+		</div>
+	</div>
+	
+	
+	<div class="form-group {{inputs.email.cssClass}}">
+		<label class="col-sm-2 control-label">Email</label>
+		<div class="col-sm-6">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+				<input class="form-control" type="text" name="email" ng-model="email" ng-init="email='<%= (typeof email !== 'undefined')? email : '' %>'" ng-change="validateData('email')" placeholder="" />
+			</div>
+			<span class="glyphicon glyphicon-remove form-control-feedback ng-cloak" ng-show="inputs.email.hasError"></span>
+			<span class="glyphicon glyphicon-ok form-control-feedback ng-cloak" ng-show="inputs.email.isValid"></span>
+			<p class="help-block ng-cloak" ng-show="inputs.email.hasError">{{inputs.email.errorMsg}}</p>
+			<p class="help-block ng-cloak" ng-show="inputs.email.isValid">{{emailCheck}}</p>
+		</div>
+	</div>
+	
+	<div class="form-group {{inputs.password.cssClass}}">
+		<label class="col-sm-2 control-label">Password</label>
+		<div class="col-sm-6">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+				<input class="form-control" type="password" ng-model="password" name="password" ng-change="validateData('password')"/>
+			</div>
+			<span class="glyphicon glyphicon-remove form-control-feedback ng-cloak" ng-show="inputs.password.hasError"></span>
+			<span class="glyphicon glyphicon-ok form-control-feedback ng-cloak" ng-show="inputs.password.isValid"></span>
+			<p class="help-block ng-cloak" ng-show="inputs.password.hasError">{{inputs.password.errorMsg}}</p>
+		</div>
+	</div>
+	
+	<div class="form-group {{inputs.confirmPassword.cssClass}}">
+		<label class="col-sm-2 control-label">Confirm Password</label>
+		<div class="col-sm-6">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+				<input class="form-control" type="password" ng-model="confirmPassword" name="confirm_password" ng-change="validateData('confirmPassword')"/>
+			</div>
+			<span class="glyphicon glyphicon-remove form-control-feedback ng-cloak" ng-show="inputs.confirmPassword.hasError"></span>
+			<span class="glyphicon glyphicon-ok form-control-feedback ng-cloak" ng-show="inputs.confirmPassword.isValid"></span>
+			<p class="help-block ng-cloak" ng-show="inputs.confirmPassword.hasError">{{inputs.confirmPassword.errorMsg}}</p>
+		</div>
+	</div>
+	
+	<div class="form-group {{inputs.firstName.cssClass}}" >
+		<label class="col-sm-2 control-label">First Name</label>
+		<div class="col-sm-6">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+				<input class="form-control" type="text" name="first_name" ng-model="firstName" ng-init="firstName='<%= (typeof firstName !== 'undefined')? firstName : '' %>'" value="" placeholder="" ng-change="validateData('firstName')" />
+			</div>
+			<span class="glyphicon glyphicon-remove form-control-feedback ng-cloak" ng-show="inputs.firstName.hasError"></span>
+			<span class="glyphicon glyphicon-ok form-control-feedback ng-cloak" ng-show="inputs.firstName.isValid"></span>
+			<p class="help-block ng-cloak" ng-show="inputs.firstName.hasError">{{inputs.firstName.errorMsg}}</p>
+		</div>
+	</div>
+	<div class="form-group {{inputs.lastName.cssClass}}">
+		<label class="col-sm-2 control-label">Last Name</label>
+		<div class="col-sm-6">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+				<input class="form-control" type="text" name="last_name" ng-model="lastName" ng-init="lastName='<%= (typeof lastName !== 'undefined')? lastName : '' %>'" ng-change="validateData('lastName')" value="" placeholder="" />
+			</div>
+			<span class="glyphicon glyphicon-remove form-control-feedback ng-cloak" ng-show="inputs.lastName.hasError"></span>
+			<span class="glyphicon glyphicon-ok form-control-feedback ng-cloak" ng-show="inputs.lastName.isValid"></span>
+			<p class="help-block ng-cloak" ng-show="inputs.lastName.hasError">{{inputs.lastName.errorMsg}}</p>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-6">
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="newsletter" ng-model="newsletter" >Include my email in the mailing list
+				</label>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-6">
+			<div class="checkbox">
+				<label class="checkbox">
+				<input name="conditions" type="checkbox" value="true" ng-model="conditions" ng-change="validateData('conditions')"/>
+				I agree to the <a href="/legal" target="_blank">Terms of Service</a>
+				</label>
+				<p class="text-danger ng-cloak" ng-show="inputs.conditions.hasError">{{inputs.conditions.errorMsg}}</p>
+			</div>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-6">
+			<!--<button type="submit" class="btn btn-action" ng-model="submit" ng-disabled="disableSubmit()">Create My Account</button>-->
+			<button type="submit" class="btn btn-action" ng-model="submit" ng-disabled="">Create My Account</button>
+		</div>
+	</div>
+</form>

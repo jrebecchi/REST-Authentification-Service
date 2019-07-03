@@ -1,0 +1,10 @@
+<form id="delete-account-confirm" method="post" data-remote="true" action="/delete-account">
+   <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+   <div class="form-group">
+        <p class="help-block">Enter your password ton confirm the deletion of your account.</p>
+        <input class="form-control" type="password" name="password"/>
+    </div>
+    <div class="form-group">
+        <input id="pwd_reset_button" class="btn btn-danger btn-block" value="Confirm" type="submit">
+    </div>
+</form>

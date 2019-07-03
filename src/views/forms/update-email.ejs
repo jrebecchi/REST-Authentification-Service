@@ -1,0 +1,29 @@
+<form class="form-horizontal" id="modify-email-form" class="modify-email-form" method="post" data-remote="true" action="/modify-email">
+    <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+    <td class="">
+        Email
+    </td>
+    <td class="text-center col-lg-5 col-md-5 col-xs-5 col-sm-5">
+        <div ng-show="!modifyEmail"><%= user.email %></div>
+    	<div ng-show="modifyEmail" class="form-group {{inputs.email.cssClass}}">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+				<input class="form-control" type="text" name="email" ng-model="email" ng-init="email='<%=user.email %>'" ng-change="validateData('email')" value="" placeholder="" />
+			</div>
+			<span class="glyphicon glyphicon-remove form-control-feedback ng-cloak" ng-show="inputs.email.hasError"></span>
+			<span class="glyphicon glyphicon-ok form-control-feedback ng-cloak" ng-show="inputs.email.isValid"></span>
+    	    <p class="help-block ng-cloak" ng-show="inputs.email.hasError">{{inputs.email.errorMsg}}</p>
+    	</div>
+    </td>
+    <td class="text-right col-lg-4 col-md-4 col-xs-4 col-sm-4">
+        <button type="button" class="btn btn-action" ng-show="!modifyEmail" ng-click="enableModifyEmail()">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Modify
+        </button>
+        <button type="submit" class="btn btn-action" ng-model="submit" ng-show="modifyEmail" ng-cloak>
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Update
+        </button>
+        <button type="button" class="btn btn-danger" ng-show="modifyEmail" ng-click="disableModifyEmail()" ng-cloak>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Cancel
+        </button>
+    </td>
+</form>
