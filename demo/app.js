@@ -21,7 +21,7 @@ const emailOptions = {
     }
 };
 
-const app = RESTAuthentificationBackend(dbOptions, emailOptions);
+const app = RESTAuthentificationBackend('secretOrPrivateKey', emailOptions, emailConfig);
 
 
 app.listen(port, (err) => {
