@@ -1,16 +1,14 @@
-const passport = require('passport');
-const Strategy = require('passport-local').Strategy;
 const Express = require('express');
-const config = require('../../config/config'); 
+const config = require('../../lib/service/db/config'); 
 const sessionize = require('supertest-session');
 const userspaceBundleRooter = require('../../bundles/UserspaceBundle/router/Router.js');
 const mainBundleRooter = require('../../bundles/MainBundle/router/Router.js');
 const myOwnBundleRooter = require('../../bundles/MyOwnBundle/router/Router.js');
 const path = require('path');
-const userspaceBundle = require('../../bundles/UserspaceBundle/UserspaceBundle');
+const userspaceBundle = require('../../lib/UserspaceBundle');
 const mainBundle = require('../../bundles/MainBundle/MainBundle');
 const myOwnBundle = require('../../bundles/MyOwnBundle/MyOwnBundle');
-const db = require('../../config/db');
+const db = require('../../lib/service/db/db');
 
 global.userspaceMailOptions = {
     host: 'smtp.ethereal.email',
