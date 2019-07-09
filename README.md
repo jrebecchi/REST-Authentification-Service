@@ -13,10 +13,9 @@ localhost:5000/email-exists?email=myemail@host.com
 //Email already registered in data base
 { "isEmailAvailable": false }
 //wrong email
-{ "notifications": [
-    {
-        "type": "error",
-        "message": "A mistake has happened. Sorry for the inconvenience, we are going to investigate it."
-    }
-]}
+{
+    "notifications": [
+        { "type": "error", "message": "This email adress is not valid!" }
+    ]
+}
 ```
