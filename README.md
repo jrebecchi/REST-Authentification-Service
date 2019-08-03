@@ -4,7 +4,7 @@ A REST back-end to handle login, registration, access control and password recov
 
 ### Test wether an email address is available or already used  
 ```bash
-localhost:5000/email-exists?email=myemail@host.com
+localhost:5000/exists?email=myemail@host.com
 
 ````
 ```js
