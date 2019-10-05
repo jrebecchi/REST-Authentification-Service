@@ -4,6 +4,7 @@
   "description": "A REST back-end to handle login, registration, access control and password recovery with JsonWebToken.",
   "main": "app.js",
   "dependencies": {
+    "agenda": "^2.1.0",
     "body-parser": "^1.19.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
