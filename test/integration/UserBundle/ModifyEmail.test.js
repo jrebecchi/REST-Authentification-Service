@@ -67,9 +67,9 @@ test('Email modification of an user registered', (done) => {
     })
     .then((user) => {
         expect(user).toBeTruthy();
-        expect(user.extras.emailConfirmed).toBeFalsy();
-        expect(user.extras.emailConfirmationCode).toBeTruthy();
-        return request.get("/confirm_email?token="+user.extras.emailConfirmationCode);
+        expect(user.extras.verified).toBeFalsy();
+        expect(user.extras.verificationToken).toBeTruthy();
+        return request.get("/confirm_email?token="+user.extras.verificationToken);
     })
     .then((response) => {
         expect(response.statusCode).toBe(302);
@@ -79,8 +79,8 @@ test('Email modification of an user registered', (done) => {
     })
     .then((user) => {
         expect(user).toBeTruthy();
-        expect(user.extras.emailConfirmed).toBeTruthy();
-        expect(user.extras.emailConfirmationCode).toBe(null);
+        expect(user.extras.verified).toBeTruthy();
+        expect(user.extras.verificationToken).toBe(null);
         return request.get('/settings');
     })
     .then((response) => {
@@ -131,8 +131,8 @@ test('Email modification of an user registered', (done) => {
     })
     .then((user) => {
         expect(user).toBeTruthy();
-        expect(user.extras.emailConfirmed).toBeFalsy();
-        expect(user.extras.emailConfirmationCode).toBeTruthy();
+        expect(user.extras.verified).toBeFalsy();
+        expect(user.extras.verificationToken).toBeTruthy();
         //test user can connect with his new email
         return request.get("/logout");            
     })

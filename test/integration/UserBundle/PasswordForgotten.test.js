@@ -14,7 +14,7 @@ let testUser = {
 };
 
 let newPassword = "password2";
-let updatePasswordToken;
+let passwordRecoveryToken;
 
 beforeAll((done) => {
 
@@ -102,9 +102,9 @@ describe('User can reset password forgotten', () => {
         })
         .then((user) => {
             expect(user).toBeTruthy();
-            updatePasswordToken = user.extras.updatePasswordToken;
-            expect(updatePasswordToken).toBeTruthy();
-            return request.get("/password_renew?token="+updatePasswordToken);
+            passwordRecoveryToken = user.extras.passwordRecoveryToken;
+            expect(passwordRecoveryToken).toBeTruthy();
+            return request.get("/password_renew?token="+passwordRecoveryToken);
         })
         .then((response) => {
             expect(response.statusCode).toBe(200);
@@ -114,7 +114,7 @@ describe('User can reset password forgotten', () => {
             expect(response.statusCode).toBe(302);
             expect(response.header.location).toBe("/dashboard");
             //Test can't change password if logged in
-            return request.post("/password_renew").send({password: newPassword, confirm_password: newPassword, token: updatePasswordToken});
+            return request.post("/password_renew").send({password: newPassword, confirm_password: newPassword, token: passwordRecoveryToken});
         })
         .then((response) => {
             expect(response.statusCode).toBe(302);
@@ -129,21 +129,21 @@ describe('User can reset password forgotten', () => {
         .then((response) => {
             expect(response.statusCode).toBe(302);
             //Test reject password when user enter two different ones and redirect user to the same form with token included
-            return request.post("/password_renew").send({password: newPassword, confirm_password: "differentpassword", token: updatePasswordToken});
+            return request.post("/password_renew").send({password: newPassword, confirm_password: "differentpassword", token: passwordRecoveryToken});
         })
         .then((response) => {
             expect(response.statusCode).toBe(302);
             expect(response.header.location.includes("password_renew?token")).toBeTruthy();
-            expect(response.header.location.includes(updatePasswordToken)).toBeTruthy();
+            expect(response.header.location.includes(passwordRecoveryToken)).toBeTruthy();
             //Test reject password when user enter a wrong password and redirect user to the same form with token included
-            return request.post("/password_renew").send({password: "aa", confirm_password: "aa", token: updatePasswordToken});
+            return request.post("/password_renew").send({password: "aa", confirm_password: "aa", token: passwordRecoveryToken});
         })
         .then((response) => {
             expect(response.statusCode).toBe(302);
             expect(response.header.location.includes("password_renew?token")).toBeTruthy();
-            expect(response.header.location.includes(updatePasswordToken)).toBeTruthy();
+            expect(response.header.location.includes(passwordRecoveryToken)).toBeTruthy();
             //Test can change password
-            return request.post("/password_renew").send({password: newPassword, confirm_password: newPassword, token: updatePasswordToken});
+            return request.post("/password_renew").send({password: newPassword, confirm_password: newPassword, token: passwordRecoveryToken});
         })
         .then((response) => {
             expect(response.statusCode).toBe(302);

@@ -15,7 +15,7 @@ let testUser = {
 };
 
 let newPassword = "password2";
-let updatePasswordToken;
+let passwordRecoveryToken;
 
 beforeAll((done) => { 
     appTester = new AppTester({useMockAuthentificaiton: false});
@@ -190,12 +190,12 @@ test('UserNotFound Error to be handled', (done) => {
     })
     .then((user) => {
         expect(user).toBeTruthy();
-        updatePasswordToken = user.extras.updatePasswordToken;
-        expect(updatePasswordToken).toBeTruthy();
+        passwordRecoveryToken = user.extras.passwordRecoveryToken;
+        expect(passwordRecoveryToken).toBeTruthy();
         return User.removeUser({email: testUser.email});
     })
     .then(() => {
-        return request.post("/password_renew").send({password: newPassword, confirm_password: newPassword, token: updatePasswordToken});
+        return request.post("/password_renew").send({password: newPassword, confirm_password: newPassword, token: passwordRecoveryToken});
     })
     .then((response) => {
         expect(response.statusCode).toBe(302);

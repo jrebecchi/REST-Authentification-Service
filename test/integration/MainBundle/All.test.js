@@ -34,7 +34,7 @@ describe('Test MainBundle API', () => {
             extras: {
                 firstName: "test", 
                 lastName:"test",
-                emailConfirmed: true
+                verified: true
             }
         };
         appTester.loginMockUser(mockUser).then(() => {
@@ -49,7 +49,7 @@ describe('Test MainBundle API', () => {
         })
         .then((response) => {
             expect(response.statusCode).toBe(302);
-            mockUser.extras.emailConfirmed = false;
+            mockUser.extras.verified = false;
             return appTester.loginMockUser(mockUser);
             ///done();
         })

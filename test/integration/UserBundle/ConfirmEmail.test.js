@@ -38,7 +38,7 @@ describe("User can confirm his email and re-ask for the confirmation email", () 
     });
 
     test('Test to resend-confirmation email and to validate email', (done) => {
-        let emailConfirmationCode;
+        let verificationToken;
         request.post('/register').send(testUser)
         .then((response) => {
             expect(response.header.location).toBe("/login");
@@ -52,10 +52,10 @@ describe("User can confirm his email and re-ask for the confirmation email", () 
         })
         .then((user) => {
             expect(user).toBeTruthy();
-            expect(user.extras.emailConfirmed).toBeFalsy();
-            emailConfirmationCode = user.extras.emailConfirmationCode;
-            expect(emailConfirmationCode).toBeTruthy();
-            expect(emailConfirmationCode.length).toBeGreaterThan(10);
+            expect(user.extras.verified).toBeFalsy();
+            verificationToken = user.extras.verificationToken;
+            expect(verificationToken).toBeTruthy();
+            expect(verificationToken.length).toBeGreaterThan(10);
             return request.get("/send_confirmation_email");
         })
         .then((response) => {
@@ -71,7 +71,7 @@ describe("User can confirm his email and re-ask for the confirmation email", () 
         .then((response) => {
             expect(response.statusCode).toBe(302);
             expect(response.header.location).toBe("/");
-            return request.get("/confirm_email?token="+emailConfirmationCode);
+            return request.get("/confirm_email?token="+verificationToken);
         })
         .then((response) => {
             expect(response.statusCode).toBe(302);
@@ -81,7 +81,7 @@ describe("User can confirm his email and re-ask for the confirmation email", () 
         .then((response) => {
             expect(response.statusCode).toBe(200);
             expect(response.text.includes("Your email adress is now confirmed")).toBeTruthy();
-            return request.get("/confirm_email?token="+emailConfirmationCode);
+            return request.get("/confirm_email?token="+verificationToken);
         })
         .then((response) => {
             expect(response.statusCode).toBe(302);

@@ -27,7 +27,7 @@ describe('Test MyOwnBundle API', () => {
             extras: {
                 firstName: "test", 
                 lastName:"test",
-                emailConfirmed: true
+                verified: true
             }
         };
         appTester.loginMockUser(mockUser)

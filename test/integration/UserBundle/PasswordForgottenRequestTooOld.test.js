@@ -14,7 +14,7 @@ let testUser = {
 };
 
 let newPassword = "password2";
-let updatePasswordToken;
+let passwordRecoveryToken;
 
 beforeAll((done) => {
 
@@ -43,20 +43,20 @@ test('Impossible to establish a new password if link expired after 60 minuts', (
         expect(response.header.location).toBe("/login");
         let oldDate = new Date()
         oldDate.setHours(oldDate.getHours()-1);
-        return User.updateUser({email: testUser.email}, {"extras.passwordUpdateRequestDate":oldDate});
+        return User.updateUser({email: testUser.email}, {"extras.passwordRecoveryRequestDate":oldDate});
     })
     .then(() => {
         return User.getUser({email: testUser.email});
     })
     .then((user) => {
         expect(user).toBeTruthy();
-        updatePasswordToken = user.extras.updatePasswordToken;
-        expect(updatePasswordToken).toBeTruthy();
-        return request.get("/password_renew?token="+updatePasswordToken);
+        passwordRecoveryToken = user.extras.passwordRecoveryToken;
+        expect(passwordRecoveryToken).toBeTruthy();
+        return request.get("/password_renew?token="+passwordRecoveryToken);
     })
     .then((response) => {
         expect(response.statusCode).toBe(200);
-        return request.post("/password_renew").send({password: newPassword, confirm_password: newPassword, token: updatePasswordToken});
+        return request.post("/password_renew").send({password: newPassword, confirm_password: newPassword, token: passwordRecoveryToken});
     })
     .then((response) => {
         expect(response.statusCode).toBe(302);

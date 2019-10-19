@@ -8,7 +8,7 @@ let user = {
     extras: {
         lastName: "bob",
         firstName: "dylan",
-        emailConfirmationCode: "gnagnagna"
+        verificationToken: "gnagnagna"
     }
 };
 
@@ -30,7 +30,7 @@ test('Prevent user registration when conditions not accepted', (done) => {
         expect(userReturned.email).toBe(user.email);
         expect(userReturned.extras.lastName).toBe(user.extras.lastName);
         expect(userReturned.extras.firstName).toBe(user.extras.firstName);
-        expect(userReturned.extras.emailConfirmationCode).toBe(user.extras.emailConfirmationCode);
+        expect(userReturned.extras.verificationToken).toBe(user.extras.verificationToken);
         expect(userReturned.password).not.toBe(user.password);
         expect(typeof userReturned.password).toBe("string");
         expect(typeof userReturned.passwordSalt).toBe("string");
