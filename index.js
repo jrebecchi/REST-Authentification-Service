@@ -1,5 +1,4 @@
-/*!
- * express
+/*
  * Copyright(c) 2019 Johann Corcuff
  * MIT Licensed
  */

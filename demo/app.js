@@ -10,18 +10,20 @@ const dbOptions = {
 
 //Enter your email options for the userspace from where will be sent the emails
 //Check nodemailer confirguration for more options (https://nodemailer.com)
-const emailOptions = {
-    from: 'myemail@myhost.com', //email address
-    host: 'smtp.myhost.com', // hostname 
-    secureConnection: true, // use SSL 
-    port: 465, // port for secure SMTP 
-    auth: {
-        user: 'username', //email login
-        pass: 'mypassword' //email password
+const options = {
+    emailConfig: {
+        from: 'myemail@myhost.com', //email address
+        host: 'smtp.myhost.com', // hostname 
+        secureConnection: true, // use SSL 
+        port: 465, // port for secure SMTP 
+        auth: {
+            user: 'username', //email login
+            pass: 'mypassword' //email password
+        }
     }
 };
 
-const app = RESTAuthentificationBackend(emailOptions, emailConfig);
+const app = RESTAuthentificationBackend(options);
 
 
 app.listen(port, (err) => {
