@@ -26,7 +26,7 @@
     "supertest": "^3.3.0",
     "supertest-session": "^3.3.0",
     "webpack": "^4.35.2",
-    "webpack-cli": "^3.3.5",
+    "webpack-cli": "^3.3.12",
     "webpack-node-externals": "^1.7.2"
   },
   "scripts": {
